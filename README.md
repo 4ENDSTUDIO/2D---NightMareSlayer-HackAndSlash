@@ -48,7 +48,7 @@ Spesifikasi Monster :
 - Attack akan tertrigger ketika ada player yang memasuki areanya
 - hanya 1 jenis Attack yang hanya diterapkan dari setiap monster
 3. ONGOING
-##BOSS
+## BOSS
 Boss sebagai lawan terakhir dari penyelesaian setiap lantai atau dungeon
 Spesifikasi Boss :
 1. Memiliki 2 Fase Mode
