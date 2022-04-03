@@ -34,7 +34,10 @@ Player Mechanic yang akan di implementasi :
 - Skill 1 / N
 - Dash
 - Win Condisition
-7. Ongoing
+7. Skill Unique
+ Bar skill unique akan terisi ketika kita mengeluarkan skill
+ - Memiliki damage lebih besar dari skill
+ - memiliki effeck partikel system lebih adictif
 ## Monster ( ENEMY )
 Monster beragam yang bergerak dalam kegelapan yang mengganggu setiap mimpi indah manusia
 Spesifikasi Monster :
