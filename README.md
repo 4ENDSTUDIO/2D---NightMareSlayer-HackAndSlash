@@ -52,3 +52,7 @@ Spesifikasi Boss :
 2. Memiliki Health dan Armor Beregenerasi
 3. Attack damage yang besar
 4. Jenis Attack yang beragam
+# STORY
+BASE STORY WRITER
+
+Mimpi Adalah sebuah kejadian yang akan dialami setiap manusia didunia ini, mimpi indah adalah impian semua orang mendambakanya untuk menikmatinya, namun ada juga mimpi buruk yang sangat dihindari dari semua orang, namun dengan adanya mimpi buruk itu pasti ada yang membuatnya dengan itu tujuan utamaku agar semua orang merasakan selalu mimpi yang indah
