@@ -35,3 +35,20 @@ Player Mechanic yang akan di implementasi :
 - Dash
 - Win Condisition
 7. Ongoing
+## Monster ( ENEMY )
+Monster beragam yang bergerak dalam kegelapan yang mengganggu setiap mimpi indah manusia
+Spesifikasi Monster :
+1. Memiliki Hp dan Armor
+- Ketika armor habis, akan terkena effect hurt
+- ketika hp abis akan destroy
+2. Attack Monster
+- Attack akan tertrigger ketika ada player yang memasuki areanya
+- hanya 1 jenis Attack yang hanya diterapkan dari setiap monster
+3. ONGOING
+##BOSS
+Boss sebagai lawan terakhir dari penyelesaian setiap lantai atau dungeon
+Spesifikasi Boss :
+1. Memiliki 2 Fase Mode
+2. Memiliki Health dan Armor Beregenerasi
+3. Attack damage yang besar
+4. Jenis Attack yang beragam
