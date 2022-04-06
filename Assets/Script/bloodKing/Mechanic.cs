@@ -6,8 +6,9 @@ public class Mechanic : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator anim;
-    float dirX, moveSpeed = 5f;
+    public float dirX, moveSpeed;
     int healthPoint = 3;
+    public float Jump;
     bool Hurt, Dead;
     bool facingRight = true;
     Vector3 localScale;
@@ -22,11 +23,11 @@ public class Mechanic : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump") && !Dead && rb.velocity.y == 0)
-            rb.AddForce(Vector2.up * 600f);
-        if (Input.GetKey(KeyCode.LeftShift))
-            moveSpeed = 10f;
-        else
-            moveSpeed = 5f;
+            rb.AddForce(Vector2.up * Jump);
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //    moveSpeed = 10f;
+        //else
+        //    moveSpeed = 5f;
         setAnimationState();
         if (!Dead)
             dirX = Input.GetAxisRaw("Horizontal") * moveSpeed;
@@ -55,7 +56,7 @@ public class Mechanic : MonoBehaviour
             anim.SetBool("Jump", false);
             anim.SetBool("Fall", false);
         }
-        if(Mathf.Abs(dirX) == 5 && rb.velocity.y == 0)
+        if(Mathf.Abs(dirX) == moveSpeed && rb.velocity.y == 0)
         {
             anim.SetBool("Run", true);
         }
