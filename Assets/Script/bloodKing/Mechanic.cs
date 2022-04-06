@@ -46,6 +46,14 @@ public class Mechanic : MonoBehaviour
 
     void setAnimationState()
     {
+        if(Input.GetKey(KeyCode.R))
+        {
+            anim.SetBool("Attack_3", true);
+        }
+        else
+        {
+            anim.SetBool("Attack_3", false);
+        }
         if(dirX == 0)
         {
             anim.SetBool("Run", false);
@@ -60,7 +68,7 @@ public class Mechanic : MonoBehaviour
         {
             anim.SetBool("Run", true);
         }
-        if(Input.GetKey(KeyCode.DownArrow)&& Mathf.Abs(dirX)==5)
+        if(Input.GetKey(KeyCode.DownArrow)&& Mathf.Abs(dirX)==moveSpeed)
         {
             anim.SetBool("Dash", true);
         }
