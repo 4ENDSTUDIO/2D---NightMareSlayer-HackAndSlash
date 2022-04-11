@@ -7,13 +7,14 @@ public class Mechanic : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     public float dirX, moveSpeed;
-    int healthPoint = 3;
     public float Jump;
     bool Hurt, Dead;
     bool facingRight = true;
     Vector3 localScale;
+   
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         localScale = transform.localScale;
@@ -98,13 +99,12 @@ public class Mechanic : MonoBehaviour
         transform.localScale = localScale;
     }
 
+   
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name.Equals("Fire"))
-        {
-            healthPoint -= 1;
-        }
-        if(collision.gameObject.name.Equals("Fire")&& healthPoint > 0)
+       
+        if(collision.gameObject.name.Equals("Fire")&& HealthBar.health > 0)
         {
             anim.SetTrigger("Hurt");
 
