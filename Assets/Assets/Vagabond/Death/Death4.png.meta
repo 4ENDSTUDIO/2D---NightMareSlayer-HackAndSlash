@@ -100,28 +100,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Death4_0
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 0
-        width: 33
-        height: 39
-      alignment: 9
-      pivot: {x: 0.71, y: 0.8}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f7160c3c64b44e60800000000000000
-      internalID: 7945674019544897529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
