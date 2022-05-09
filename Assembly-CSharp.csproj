@@ -328,38 +328,20 @@
     <Reference Include="UnityEditor">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.36f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Ludiq.Graphs.Editor">
-      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Graphs.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Ludiq.Core.Runtime">
-      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Ludiq.Graphs.Runtime">
-      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Graphs.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Bolt.Core.Runtime">
-      <HintPath>Assets\Ludiq\Assemblies\Bolt.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Bolt.Flow.Runtime">
-      <HintPath>Assets\Ludiq\Assemblies\Bolt.Flow.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>Assets\Ludiq\Assemblies\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="Antlr3.Runtime">
       <HintPath>Assets\Ludiq\Assemblies\Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="MiscUtil">
-      <HintPath>Assets\Ludiq\Assemblies\MiscUtil.dll</HintPath>
     </Reference>
     <Reference Include="Bolt.Core.Editor">
       <HintPath>Assets\Ludiq\Assemblies\Bolt.Core.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Ludiq.Platforms">
-      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Platforms.dll</HintPath>
+    <Reference Include="Bolt.Core.Runtime">
+      <HintPath>Assets\Ludiq\Assemblies\Bolt.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Ludiq.Core.Editor">
-      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Core.Editor.dll</HintPath>
+    <Reference Include="Bolt.Flow.Editor">
+      <HintPath>Assets\Ludiq\Assemblies\Bolt.Flow.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Bolt.Flow.Runtime">
+      <HintPath>Assets\Ludiq\Assemblies\Bolt.Flow.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Bolt.State.Editor">
       <HintPath>Assets\Ludiq\Assemblies\Bolt.State.Editor.dll</HintPath>
@@ -367,8 +349,26 @@
     <Reference Include="Bolt.State.Runtime">
       <HintPath>Assets\Ludiq\Assemblies\Bolt.State.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Bolt.Flow.Editor">
-      <HintPath>Assets\Ludiq\Assemblies\Bolt.Flow.Editor.dll</HintPath>
+    <Reference Include="Ionic.Zip">
+      <HintPath>Assets\Ludiq\Assemblies\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Ludiq.Core.Editor">
+      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Ludiq.Core.Runtime">
+      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Ludiq.Graphs.Editor">
+      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Graphs.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Ludiq.Graphs.Runtime">
+      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Graphs.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Ludiq.Platforms">
+      <HintPath>Assets\Ludiq\Assemblies\Ludiq.Platforms.dll</HintPath>
+    </Reference>
+    <Reference Include="MiscUtil">
+      <HintPath>Assets\Ludiq\Assemblies\MiscUtil.dll</HintPath>
     </Reference>
     <Reference Include="YamlDotNet">
       <HintPath>Assets\Ludiq\Assemblies\YamlDotNet.dll</HintPath>
