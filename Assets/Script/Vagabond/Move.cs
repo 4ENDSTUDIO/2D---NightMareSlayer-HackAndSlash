@@ -10,13 +10,24 @@ public class Move : MonoBehaviour
     public float runSpeed = 40f;
     bool jump = false;
     Rigidbody2D rb;
+    public Joystick Joystick;
     public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
     public void Update()
     {
-       horizontalMove= Input.GetAxisRaw("Horizontal") * runSpeed;
+       if(Joystick.Horizontal >= .2f)
+        {
+            horizontalMove = runSpeed;
+        }else if(Joystick.Horizontal <= -.2f)
+        {
+            horizontalMove = -runSpeed; 
+        }else
+        {
+            horizontalMove = 0f;
+        }
+       
         animator.SetFloat("Speed", Mathf.Abs( horizontalMove)); 
         if(Input.GetButtonDown("Jump"))
         {
