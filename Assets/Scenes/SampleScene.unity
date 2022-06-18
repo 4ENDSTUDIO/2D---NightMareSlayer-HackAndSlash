@@ -171,11 +171,8 @@ GameObject:
   - component: {fileID: 170009735}
   - component: {fileID: 170009734}
   - component: {fileID: 170009737}
-  - component: {fileID: 170009738}
   - component: {fileID: 170009739}
-  - component: {fileID: 170009740}
-  - component: {fileID: 170009741}
-  - component: {fileID: 170009742}
+  - component: {fileID: 170009738}
   m_Layer: 8
   m_Name: Vagabond
   m_TagString: Untagged
@@ -261,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170009733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.43, y: 0.03, z: -0.15004142}
+  m_LocalPosition: {x: -6.43, y: -0.353, z: -0.15004142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1228470809}
@@ -282,7 +279,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009897143, y: 0.16322303}
+  m_Offset: {x: 0.009897143, y: 0.004179597}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -293,7 +290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31047434, y: 0.3059287}
+  m_Size: {x: 0.31047434, y: 0.62401557}
   m_EdgeRadius: 0
 --- !u!50 &170009738
 Rigidbody2D:
@@ -310,11 +307,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_GravityScale: 2
+  m_Material: {fileID: 6200000, guid: 62d09119c8d3d2844aebee02cda8ece4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &170009739
 MonoBehaviour:
@@ -325,83 +322,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 170009733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e350b4e309db33643b4324f91b4a3d2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 315a46dc2fee2ab4a93882bf10f2c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 450
-  m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  speed: 4
+  jumpForce: 7
+  groundCheck: {fileID: 1938357188}
+  checkRadius: 0.5
+  whatIsGround:
     serializedVersion: 2
-    m_Bits: 2
-  m_GroundCheck: {fileID: 1938357188}
-  m_CeilingCheck: {fileID: 1228470809}
-  m_CrouchDisableCollider: {fileID: 170009737}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 170009742}
-        m_MethodName: Landing
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &170009740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170009733}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c26f00ee351fd4d9be0323d7f295d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dirX: 0
-  moveSpeed: 3
-  Jump: 500
---- !u!58 &170009741
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170009733}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9fa33a8a0ff96424f9fd378d62437d31, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.005628705, y: -0.13439453}
-  serializedVersion: 2
-  m_Radius: 0.15805423
---- !u!114 &170009742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170009733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f47446a1a76f3447bf8732b34f51e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 170009739}
-  animator: {fileID: 170009734}
-  runSpeed: 15
-  Joystick: {fileID: 1715910556}
+    m_Bits: 512
+  extraJumpsValue: 1
 --- !u!1 &213311407
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 213311409}
   - component: {fileID: 213311408}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238872875}
   - component: {fileID: 238872876}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: GameObject (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1765,7 +1696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 464159411}
   - component: {fileID: 464159410}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1857,12 +1788,12 @@ PrefabInstance:
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 121.80914
+      value: 73.918625
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 118.98059
+      value: 71.09003
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
@@ -1902,12 +1833,12 @@ PrefabInstance:
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 97
+      value: 98.7
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 104
+      value: 73.2
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
@@ -2055,7 +1986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 493195307}
   - component: {fileID: 493195308}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: GameObject (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2516,7 +2447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 708390863}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2867,18 +2798,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1715910556 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
-    type: 3}
-  m_PrefabInstance: {fileID: 468123021}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1840393418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,7 +2808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840393420}
   - component: {fileID: 1840393419}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3006,7 +2925,7 @@ GameObject:
   m_Layer: 8
   m_Name: Ground Check
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3034,7 +2953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007814458}
   - component: {fileID: 2007814457}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

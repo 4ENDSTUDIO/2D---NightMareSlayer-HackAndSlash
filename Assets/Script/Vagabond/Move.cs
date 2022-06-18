@@ -17,10 +17,10 @@ public class Move : MonoBehaviour
     }
     public void Update()
     {
-       if(Joystick.Horizontal >= .2f)
+       if(Joystick.Horizontal >= .5f)
         {
             horizontalMove = runSpeed;
-        }else if(Joystick.Horizontal <= -.2f)
+        }else if(Joystick.Horizontal <= -.5f)
         {
             horizontalMove = -runSpeed; 
         }else
