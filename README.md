@@ -6,26 +6,33 @@ Game dimana player harus membunuh musuh dengan combo-combo yang ada.musuh menyer
 ## Controling Player
 Kita sebagai player (Main Character) yang akan bertarung dalam mimpi buruk seseorang, melawan pikiran jahat yang menyerupai monster-monster kegelapan. Cara mengendalikan player dengan mainkan analog dan tombol untuk menyesuaikan aksi dan combo yang sangat menarik.
 Player Mechanic yang akan di implementasi :
-1. Mana Star
+1. Run And Jump :
+- Lari speed cukup 3
+- Double jump
+- memiliki smoke saat lompat
+- memiliki smoke saat fall
+- ketika lari berhenti terdapat animation
+- saat terjatuh dari tebing, terdapat aksi animation fall
+2. Mana Star
 - Dapat didapatkan saat membunuh monster
 - Mana star berfungsi untuk player mengeluarkan skillnya
 - dengan menggunakan mana Star dapat mengeluarkan skill dan combo yang mempunyai damage besar ke lawan
-2. Shield Star
+3. Shield Star
 - Shield Star berfungsi untuk Player menahan damage dengan Shield Star
 - Dapat didapatkan saat memukul monster
 - Dengan Shield Star dapat menahan damage monster ke player, saat aktif shield damage yang diterima adalah 0
-3. Attack Combo dalam semua keadaan
+4. Attack Combo dalam semua keadaan
 - Basic Attack terdapat 3 / N attack yang beragam
 - Special Skill akan memakan Mana Star 
 - Flying Attack
 - Dash Attack
 - Fall Attack
-4. Health Bar dan Armor
+5. Health Bar dan Armor
 - Health Berupa Bar seperti biasa berupa darah player
 - Armor ketika monster memukul akan mengurangi armor terlebih dahulu
-5. Combo Calculation
+6. Combo Calculation
 - Ketika Player telah memukul monster sebanyak lebih dari 10 akan akan notif combo 
-6. Animation :
+7. Animation :
 - Idle
 - Run
 - Die
@@ -34,10 +41,11 @@ Player Mechanic yang akan di implementasi :
 - Skill 1 / N
 - Dash
 - Win Condisition
-7. Skill Unique
+8. Skill Unique
  Bar skill unique akan terisi ketika kita mengeluarkan skill
  - Memiliki damage lebih besar dari skill
  - memiliki effeck partikel system lebih adictif
+
 ## Monster ( ENEMY )
 Monster beragam yang bergerak dalam kegelapan yang mengganggu setiap mimpi indah manusia
 Spesifikasi Monster :
