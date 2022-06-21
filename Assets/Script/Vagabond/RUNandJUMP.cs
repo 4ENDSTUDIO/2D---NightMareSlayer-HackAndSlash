@@ -7,9 +7,7 @@ public class RUNandJUMP : MonoBehaviour
     public float speed;
     public float jumpForce;
     private float moveInput;
-
     private Rigidbody2D rb;
-
     private bool facingRight = true;
 
     private bool isGrounded;
@@ -22,12 +20,18 @@ public class RUNandJUMP : MonoBehaviour
 
     private Animator anim;
 
-    [SerializeField]
-    GameObject dustJump;
+  
+    public GameObject dustJump;
+
+    private AudioSource source;
+    public AudioClip JumpSound;
+  
     
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+       
         extraJumps = extraJumpValue;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -39,19 +43,21 @@ public class RUNandJUMP : MonoBehaviour
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        if(facingRight == false && moveInput > 0)
+        if (facingRight == false && moveInput > 0)
         {
+            
             Flip();
-        }else if(facingRight == true && moveInput < 0)
+        } else if (facingRight == true && moveInput < 0)
         {
             Flip();
         }
-
+      
         if(moveInput == 0)
         {
             anim.SetBool("Run", false);
         }else
         {
+            
             anim.SetBool("Run", true);
         }
 
@@ -61,6 +67,7 @@ public class RUNandJUMP : MonoBehaviour
         if (isGrounded == true)
         {
 
+            
             extraJumps = extraJumpValue;
 
 
@@ -69,11 +76,14 @@ public class RUNandJUMP : MonoBehaviour
         {
             anim.SetBool("Jump", true);
         }
+
+      
         if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
 
-            Instantiate(dustJump, transform.position, dustJump.transform.rotation);
-
+            Instantiate(dustJump, transform.position, Quaternion.identity);
+            source.clip = JumpSound;
+            source.Play();
             anim.SetTrigger("TakeOf");
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
@@ -85,6 +95,7 @@ public class RUNandJUMP : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
 
         }
+      
 
      
 
@@ -115,6 +126,8 @@ public class RUNandJUMP : MonoBehaviour
         }
 
     }
+
+  
 
     void Flip()
     {

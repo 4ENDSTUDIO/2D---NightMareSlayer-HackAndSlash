@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\Vagabond\DustJump.cs" />
     <Compile Include="Assets\Script\Vagabond\Move.cs" />
     <Compile Include="Assets\Script\Vagabond\RUNandJUMP.cs" />
+    <Compile Include="Assets\Script\Vagabond\SoundEffectCollider.cs" />
     <Compile Include="Assets\Script\bloodKing\HealthBar.cs" />
     <Compile Include="Assets\Script\bloodKing\Mechanic.cs" />
     <Compile Include="Assets\Script\bloodKing\transtition3.cs" />
