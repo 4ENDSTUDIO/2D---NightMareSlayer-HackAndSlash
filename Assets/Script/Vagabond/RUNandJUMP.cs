@@ -22,6 +22,9 @@ public class RUNandJUMP : MonoBehaviour
 
     private Animator anim;
 
+    [SerializeField]
+    GameObject dustJump;
+    
 
     private void Start()
     {
@@ -55,39 +58,53 @@ public class RUNandJUMP : MonoBehaviour
     }
     private void Update()
     {
-        if(isGrounded == true)
+        if (isGrounded == true)
         {
-           
+
             extraJumps = extraJumpValue;
-           
+
 
         }
         else
         {
             anim.SetBool("Jump", true);
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)&& extraJumps > 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
+
+            Instantiate(dustJump, transform.position, dustJump.transform.rotation);
+
             anim.SetTrigger("TakeOf");
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
-        }else if(Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
+        } else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
         {
+
+
             anim.SetTrigger("TakeOf");
             rb.velocity = Vector2.up * jumpForce;
+
         }
+
+     
 
 
         if(rb.velocity.y >  0)
         {
-            anim.SetBool("Jump", true);
-
             
+            anim.SetBool("Jump", true);
+            
+
+
+
         }
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 )
         {
+            
+           
             anim.SetBool("Fall", true);
             anim.SetBool("Jump", false);
+           
 
 
         }
@@ -106,4 +123,6 @@ public class RUNandJUMP : MonoBehaviour
         Scaler.x *= -1;
         transform.localScale = Scaler;
     }
+
+ 
 }
