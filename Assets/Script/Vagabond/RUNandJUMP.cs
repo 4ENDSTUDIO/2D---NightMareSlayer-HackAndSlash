@@ -21,7 +21,8 @@ public class RUNandJUMP : MonoBehaviour
     private int extraJumps;
     public int extraJumpValue;
 
-    
+    public Joystick Joystik;
+    float horizontalMove = 0f;
     private Animator anim;
 
     [Header("Smoke")]
@@ -46,8 +47,24 @@ public class RUNandJUMP : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, WhatIsGround);
-        moveInput = Input.GetAxis("Horizontal");
+        moveInput = Joystik.Horizontal * speed;
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+        if (Joystik.Horizontal >= .5f)
+        {
+            horizontalMove = moveInput;
+        }
+        else if (Joystik.Horizontal <= -.5f)
+        {
+            horizontalMove = -moveInput;
+        }
+        else
+        {
+            horizontalMove = 0f;
+        }
+
+        anim.SetFloat("Speed", Mathf.Abs(moveInput));
+
 
         if (facingRight == false && moveInput > 0)
         {
@@ -61,10 +78,11 @@ public class RUNandJUMP : MonoBehaviour
             CreateDustRun();
         }
         
-       
+     
 
         if (moveInput == 0)
         {
+
             anim.SetBool("Run", false);
         }else
         {
@@ -89,23 +107,7 @@ public class RUNandJUMP : MonoBehaviour
         }
 
       
-        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
-        {
-            CreateDustRun();
-            Instantiate(dustJump, transform.position, Quaternion.identity);
-            source.clip = JumpSound;
-            source.Play();
-            anim.SetTrigger("TakeOf");
-            rb.velocity = Vector2.up * jumpForce;
-            extraJumps--;
-        } else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
-        {
-
-            CreateDustRun();
-            anim.SetTrigger("TakeOf");
-            rb.velocity = Vector2.up * jumpForce;
-
-        }
+        
       
 
      
@@ -136,6 +138,27 @@ public class RUNandJUMP : MonoBehaviour
             anim.SetBool("Fall", false);
         }
 
+    }
+    public void jump()
+    {
+        if (extraJumps > 0)
+        {
+            CreateDustRun();
+            Instantiate(dustJump, transform.position, Quaternion.identity);
+            source.clip = JumpSound;
+            source.Play();
+            anim.SetTrigger("TakeOf");
+            rb.velocity = Vector2.up * jumpForce;
+            extraJumps--;
+        }
+        else if (extraJumps == 0 && isGrounded == true)
+        {
+
+            CreateDustRun();
+            anim.SetTrigger("TakeOf");
+            rb.velocity = Vector2.up * jumpForce;
+
+        }
     }
 
   
