@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class RUNandJUMP : MonoBehaviour
 {
+    [Header("Player Basic")]
     public float speed;
     public float jumpForce;
     private float moveInput;
     private Rigidbody2D rb;
     private bool facingRight = true;
 
+    [Header("Condition Jump")]
     private bool isGrounded;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask WhatIsGround;
 
+    [Header("Application Double Jump")]
     private int extraJumps;
     public int extraJumpValue;
 
+    
     private Animator anim;
 
-  
+    [Header("Smoke")]
     public GameObject dustJump;
+    public ParticleSystem DustRun;
 
+    [Header("Sound Effect")]
     private AudioSource source;
     public AudioClip JumpSound;
   
@@ -47,12 +53,17 @@ public class RUNandJUMP : MonoBehaviour
         {
             
             Flip();
+            CreateDustRun();
         } else if (facingRight == true && moveInput < 0)
         {
+           
             Flip();
+            CreateDustRun();
         }
-      
-        if(moveInput == 0)
+        
+       
+
+        if (moveInput == 0)
         {
             anim.SetBool("Run", false);
         }else
@@ -80,7 +91,7 @@ public class RUNandJUMP : MonoBehaviour
       
         if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
-
+            CreateDustRun();
             Instantiate(dustJump, transform.position, Quaternion.identity);
             source.clip = JumpSound;
             source.Play();
@@ -90,7 +101,7 @@ public class RUNandJUMP : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
         {
 
-
+            CreateDustRun();
             anim.SetTrigger("TakeOf");
             rb.velocity = Vector2.up * jumpForce;
 
@@ -102,7 +113,7 @@ public class RUNandJUMP : MonoBehaviour
 
         if(rb.velocity.y >  0)
         {
-            
+            DustRun.Stop();
             anim.SetBool("Jump", true);
             
 
@@ -111,8 +122,8 @@ public class RUNandJUMP : MonoBehaviour
         }
         if (rb.velocity.y < 0 )
         {
-            
-           
+
+            DustRun.Stop();
             anim.SetBool("Fall", true);
             anim.SetBool("Jump", false);
            
@@ -135,6 +146,19 @@ public class RUNandJUMP : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+
+        Vector3 Scaler1 = DustRun.transform.localScale;
+        Scaler1.x *= -1;
+        DustRun.transform.localScale = Scaler;
+        DustRun.Play();
+    }
+
+    public void CreateDustRun()
+    {
+        
+
+
+
     }
 
  
