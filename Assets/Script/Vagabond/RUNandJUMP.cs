@@ -11,14 +11,12 @@ public class RUNandJUMP : MonoBehaviour
     private bool isFacingRight = true;
 
 
+
     [Header("Animation")]
     private bool isRun;
 
 
 
-    //public float speed;
-    //private float moveInput;
-    //private bool facingRight = true;
 
     [Header("Condition Jump")]
     public float jumpForce;
@@ -50,15 +48,7 @@ public class RUNandJUMP : MonoBehaviour
     public AudioClip JumpSound;
 
 
-    [Header("Dash")]
-    private bool isDashing;
-    public float dashTime;
-    public float dashSpeed;
-    public float distanceBetweenImages;
-    public float dashCooldown;
-    private float dashTimeLeft;
-    private float lastImageXpos;
-    private float lashDash = -100f;
+   
   
     
 
@@ -75,7 +65,11 @@ public class RUNandJUMP : MonoBehaviour
         checkMovementDirection();
         CheckInput();
         checkIfJump();
-    
+       
+      
+
+     
+
     }
     private void FixedUpdate()
     {
@@ -109,11 +103,7 @@ public class RUNandJUMP : MonoBehaviour
             anim.SetBool("Fall", false);
         }
 
-        if (Input.GetButtonDown("Dash"))
-        {
-            if (Time.time >= (lashDash + dashCooldown))
-                AttempToDash();
-        }
+        
         if (isGrounded && rb.velocity.y == 0)
         {
             canJump = true;
@@ -156,34 +146,25 @@ public class RUNandJUMP : MonoBehaviour
     }
     private void CheckInput()
     {
+       
         movementInputDirection = Joystik.Horizontal;
     }
 
     private void ApplyMovement()
     {
+       
+            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
         
-        rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+            
+        
+        
+       
      
     }
 
-    private void AttempToDash()
-    {
-        isDashing = true;
-        dashTimeLeft = dashTime;
-        lashDash = Time.time;
+  
 
-        PlayerAfterImagePool.Instance.GetFromPool();
-        lastImageXpos = transform.position.x;
-    }
-
-    private void CheckDust()
-    {
-        if(isDashing)
-        {
-           
-
-        }
-    }
+  
     public void jump()
     {
         if (extraJumps > 0)
