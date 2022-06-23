@@ -63,18 +63,18 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
-    <Compile Include="Assets\Script\Enemy\Damage.cs" />
-    <Compile Include="Assets\Script\Vagabond\CharacterController2D.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Script\Vagabond\DustJump.cs" />
-    <Compile Include="Assets\Script\Vagabond\Move.cs" />
+    <Compile Include="Assets\Script\Vagabond\PlayerAfterAimage.cs" />
+    <Compile Include="Assets\Script\Vagabond\PlayerAfterImagePool.cs" />
+    <Compile Include="Assets\Script\Vagabond\PlayerCombat.cs" />
     <Compile Include="Assets\Script\Vagabond\RUNandJUMP.cs" />
     <Compile Include="Assets\Script\Vagabond\SoundEffectCollider.cs" />
+    <Compile Include="Assets\Script\bloodKing\CharacterController2D.cs" />
     <Compile Include="Assets\Script\bloodKing\HealthBar.cs" />
     <Compile Include="Assets\Script\bloodKing\Mechanic.cs" />
+    <Compile Include="Assets\Script\bloodKing\Move.cs" />
     <Compile Include="Assets\Script\bloodKing\transtition3.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Assets\EULA - READ ME.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

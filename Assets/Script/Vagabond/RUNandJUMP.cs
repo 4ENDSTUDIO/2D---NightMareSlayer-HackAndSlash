@@ -4,146 +4,181 @@ using UnityEngine;
 
 public class RUNandJUMP : MonoBehaviour
 {
-    [Header("Player Basic")]
-    public float speed;
-    public float jumpForce;
-    private float moveInput;
+    [Header("Movement")]
     private Rigidbody2D rb;
-    private bool facingRight = true;
+    private float movementInputDirection;
+    public float movementSpeed = 10.0f;
+    private bool isFacingRight = true;
+
+
+    [Header("Animation")]
+    private bool isRun;
+
+
+
+    //public float speed;
+    //private float moveInput;
+    //private bool facingRight = true;
 
     [Header("Condition Jump")]
+    public float jumpForce;
     private bool isGrounded;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask WhatIsGround;
+    private bool canJump;
+
 
     [Header("Application Double Jump")]
     private int extraJumps;
     public int extraJumpValue;
 
+
+    [Header("Enviroment")]
     public Joystick Joystik;
     float horizontalMove = 0f;
     private Animator anim;
+
 
     [Header("Smoke")]
     public GameObject dustJump;
     public ParticleSystem DustRun;
 
+
     [Header("Sound Effect")]
     private AudioSource source;
     public AudioClip JumpSound;
+
+
+    [Header("Dash")]
+    private bool isDashing;
+    public float dashTime;
+    public float dashSpeed;
+    public float distanceBetweenImages;
+    public float dashCooldown;
+    private float dashTimeLeft;
+    private float lastImageXpos;
+    private float lashDash = -100f;
   
     
 
     private void Start()
     {
         source = GetComponent<AudioSource>();
-       
-        extraJumps = extraJumpValue;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, WhatIsGround);
-        moveInput = Joystik.Horizontal * speed;
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
-        if (Joystik.Horizontal >= .5f)
-        {
-            horizontalMove = moveInput;
-        }
-        else if (Joystik.Horizontal <= -.5f)
-        {
-            horizontalMove = -moveInput;
-        }
-        else
-        {
-            horizontalMove = 0f;
-        }
-
-        anim.SetFloat("Speed", Mathf.Abs(moveInput));
-
-
-        if (facingRight == false && moveInput > 0)
-        {
-            
-            Flip();
-            CreateDustRun();
-        } else if (facingRight == true && moveInput < 0)
-        {
-           
-            Flip();
-            CreateDustRun();
-        }
-        
-     
-
-        if (moveInput == 0)
-        {
-
-            anim.SetBool("Run", false);
-        }else
-        {
-            
-            anim.SetBool("Run", true);
-        }
-
+        extraJumps = extraJumpValue;
     }
     private void Update()
     {
+        UpdateAnimation();
+        checkMovementDirection();
+        CheckInput();
         if (isGrounded == true)
-        {
-
-            
+        {   
             extraJumps = extraJumpValue;
-
-
         }
         else
         {
             anim.SetBool("Jump", true);
         }
-
-      
-        
-      
-
-     
-
-
         if(rb.velocity.y >  0)
         {
             DustRun.Stop();
             anim.SetBool("Jump", true);
-            
-
-
-
         }
         if (rb.velocity.y < 0 )
         {
-
             DustRun.Stop();
             anim.SetBool("Fall", true);
             anim.SetBool("Jump", false);
-           
-
-
         }
         if (rb.velocity.y == 0)
         {
-         
             anim.SetBool("Fall", false);
         }
 
+        if(Input.GetButtonDown("Dash"))
+        {
+            if(Time.time >= (lashDash + dashCooldown))
+            AttempToDash();
+        }
+    }
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, WhatIsGround);
+        
+
+    
+    }
+    
+
+    private void UpdateAnimation()
+    {
+        anim.SetBool("Run", isRun);
+    }
+    private void checkMovementDirection()
+    {
+        if(isFacingRight && movementInputDirection < 0)
+        {
+            Flip();
+        }
+        else if(!isFacingRight && movementInputDirection > 0)
+        {
+            Flip();
+        }
+        if(rb.velocity.x !=0)
+        {
+            isRun = true;
+        }
+        else
+        {
+            isRun = false;
+        }
+    }
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0.0f, 180.0f, 0.0f);
+        DustRun.Play();
+    }
+    private void CheckInput()
+    {
+        movementInputDirection = Joystik.Horizontal;
+    }
+
+    private void ApplyMovement()
+    {
+        
+        rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+     
+    }
+
+    private void AttempToDash()
+    {
+        isDashing = true;
+        dashTimeLeft = dashTime;
+        lashDash = Time.time;
+
+        PlayerAfterImagePool.Instance.GetFromPool();
+        lastImageXpos = transform.position.x;
+    }
+
+    private void CheckDust()
+    {
+        if(isDashing)
+        {
+           
+
+        }
     }
     public void jump()
     {
+
         if (extraJumps > 0)
         {
-            CreateDustRun();
+            
             Instantiate(dustJump, transform.position, Quaternion.identity);
             source.clip = JumpSound;
             source.Play();
@@ -154,7 +189,7 @@ public class RUNandJUMP : MonoBehaviour
         else if (extraJumps == 0 && isGrounded == true)
         {
 
-            CreateDustRun();
+           
             anim.SetTrigger("TakeOf");
             rb.velocity = Vector2.up * jumpForce;
 
@@ -163,26 +198,16 @@ public class RUNandJUMP : MonoBehaviour
 
   
 
-    void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+    //void Flip()
+    //{
+    //    facingRight = !facingRight;
+    //    Vector3 Scaler = transform.localScale;
+    //    Scaler.x *= -1;
+    //    transform.localScale = Scaler;
 
-        Vector3 Scaler1 = DustRun.transform.localScale;
-        Scaler1.x *= -1;
-        DustRun.transform.localScale = Scaler;
-        DustRun.Play();
-    }
-
-    public void CreateDustRun()
-    {
-        
-
-
-
-    }
-
- 
+    //    Vector3 Scaler1 = DustRun.transform.localScale;
+    //    Scaler1.x *= -1;
+    //    DustRun.transform.localScale = Scaler;
+    //    DustRun.Play();
+    //}
 }
