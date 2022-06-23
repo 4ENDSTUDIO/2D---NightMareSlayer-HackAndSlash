@@ -74,20 +74,31 @@ public class RUNandJUMP : MonoBehaviour
         UpdateAnimation();
         checkMovementDirection();
         CheckInput();
+        checkIfJump();
+    
+    }
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, WhatIsGround);
+    }
+    void checkIfJump()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, WhatIsGround);
         if (isGrounded == true)
-        {   
+        {
             extraJumps = extraJumpValue;
         }
         else
         {
             anim.SetBool("Jump", true);
         }
-        if(rb.velocity.y >  0)
+        if (rb.velocity.y > 0)
         {
             DustRun.Stop();
             anim.SetBool("Jump", true);
         }
-        if (rb.velocity.y < 0 )
+        if (rb.velocity.y < 0)
         {
             DustRun.Stop();
             anim.SetBool("Fall", true);
@@ -98,19 +109,19 @@ public class RUNandJUMP : MonoBehaviour
             anim.SetBool("Fall", false);
         }
 
-        if(Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash"))
         {
-            if(Time.time >= (lashDash + dashCooldown))
-            AttempToDash();
+            if (Time.time >= (lashDash + dashCooldown))
+                AttempToDash();
         }
-    }
-    private void FixedUpdate()
-    {
-        ApplyMovement();
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, WhatIsGround);
-        
-
-    
+        if (isGrounded && rb.velocity.y == 0)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
     }
     
 
@@ -175,10 +186,9 @@ public class RUNandJUMP : MonoBehaviour
     }
     public void jump()
     {
-
         if (extraJumps > 0)
         {
-            
+
             Instantiate(dustJump, transform.position, Quaternion.identity);
             source.clip = JumpSound;
             source.Play();
@@ -186,14 +196,28 @@ public class RUNandJUMP : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
-        else if (extraJumps == 0 && isGrounded == true)
+        if (canJump)
         {
+            if (extraJumps > 0 )
+            {
 
-           
-            anim.SetTrigger("TakeOf");
-            rb.velocity = Vector2.up * jumpForce;
+                Instantiate(dustJump, transform.position, Quaternion.identity);
+                source.clip = JumpSound;
+                source.Play();
+                anim.SetTrigger("TakeOf");
+                rb.velocity = Vector2.up * jumpForce;
+                extraJumps--;
+            }
+            else if (extraJumps == 0 && isGrounded == true)
+            {
 
+
+                anim.SetTrigger("TakeOf");
+                rb.velocity = Vector2.up * jumpForce;
+
+            }
         }
+       
     }
 
   
