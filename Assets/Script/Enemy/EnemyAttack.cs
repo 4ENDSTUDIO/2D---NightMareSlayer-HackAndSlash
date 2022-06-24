@@ -25,9 +25,14 @@ public class EnemyAttack : MonoBehaviour
     {
         Debug.Log("Enemy Die");
         anim.SetBool("IsDead", true);
+        //GetComponent<Collider2D>().enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        this.enabled = false;
+        Destroy(gameObject, 1.5f);
 
-        Destroy(gameObject, 1f);
-       
+
+
+
     }
    
 }
