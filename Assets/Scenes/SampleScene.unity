@@ -5096,6 +5096,7 @@ MonoBehaviour:
     type: 3}
   DustRun: {fileID: 22985223}
   JumpSound: {fileID: 8300000, guid: 3a18402e6dd94fc40a16a78020795f4b, type: 3}
+  basicAttack: {fileID: 170009740}
 --- !u!114 &170009740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5116,6 +5117,8 @@ MonoBehaviour:
   attackRange: 0.61
   attackDamage: 20
   attackRate: 2
+  noOfClick: 0
+  maxComboDelay: 0.7
 --- !u!82 &170009741
 AudioSource:
   m_ObjectHideFlags: 0

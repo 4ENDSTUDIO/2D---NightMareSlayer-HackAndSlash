@@ -47,6 +47,9 @@ public class RUNandJUMP : MonoBehaviour
     private AudioSource source;
     public AudioClip JumpSound;
 
+    [Header("Script Call")]
+    public PlayerCombat basicAttack;
+
 
    
   
@@ -101,6 +104,7 @@ public class RUNandJUMP : MonoBehaviour
         if (rb.velocity.y == 0)
         {
             anim.SetBool("Fall", false);
+            basicAttack.BasicAttack();
         }
 
         
