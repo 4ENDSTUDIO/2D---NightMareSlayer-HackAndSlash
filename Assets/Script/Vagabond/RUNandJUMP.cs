@@ -104,7 +104,7 @@ public class RUNandJUMP : MonoBehaviour
         if (rb.velocity.y == 0)
         {
             anim.SetBool("Fall", false);
-            basicAttack.BasicAttack();
+           
         }
 
         

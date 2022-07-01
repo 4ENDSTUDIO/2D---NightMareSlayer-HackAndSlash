@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Animator anim;
+    public Rigidbody2D rb;
 
     public Transform attackPoint;
     public LayerMask enemyLayer;
@@ -30,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
         }
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKey(KeyCode.K))
+            if (rb.velocity.y == 0)
             {
                 lastClickedTime = Time.time;
                 noOfClick++;
