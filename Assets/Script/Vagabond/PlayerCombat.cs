@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -18,18 +19,29 @@ public class PlayerCombat : MonoBehaviour
     public float maxComboDelay = 0.5f;
 
     [Header("Charge Attack")]
-    public float power;
+    public float power = 0;
+    float minPower = 0;
     float maxPower = 3;
     bool buttonHeldDown;
+    public Image barChargeAttack;
 
 
     private void Update()
     {
-        if(buttonHeldDown && power <= maxPower)
+        if(buttonHeldDown && minPower <= maxPower)
         {
-            power += Time.deltaTime;
+            minPower += Time.fixedDeltaTime;
            
         }
+        if(minPower > 1 && power <= maxPower)
+        {
+            power += Time.fixedDeltaTime;
+        }
+       
+            barChargeAttack.gameObject.SetActive(true);
+            barChargeAttack.fillAmount = power / maxPower;
+        
+       
        
         ChargeAttack();
     
@@ -47,21 +59,39 @@ public class PlayerCombat : MonoBehaviour
     }
     public void RealeseButton()
     {
-        if(power > 2)
+        if(power > 3)
         {
             anim.SetTrigger("ChargeAttack");
-            power = 1;
+
+            Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemy)
+            {
+                enemy.GetComponent<EnemyAttack>().TakeDamage(attackDamage * 3);
+            }
+            power = 0;
         }
        
-        if (power < 2)
+        if (power < 3)
         {
             buttonHeldDown = false;
-            power = 1;
+            power = 0;
+
+        }
+        if (minPower > 3)
+        {
+            anim.SetTrigger("ChargeAttack");
+            minPower = 0;
+        }
+
+        if (minPower < 3)
+        {
+            buttonHeldDown = false;
+            minPower = 0;
 
         }
 
-        
-       
+
+
     }
 
     public void BasicAttack()
