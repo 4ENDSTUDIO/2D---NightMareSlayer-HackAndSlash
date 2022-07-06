@@ -4,23 +4,42 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    [Header("Basic Attack")]
     public Animator anim;
     public Rigidbody2D rb;
-
     public Transform attackPoint;
     public LayerMask enemyLayer;
-
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
-
     public int noOfClick = 0;
     float lastClickedTime = 0;
     public float maxComboDelay = 0.5f;
+
+    [Header("Charge Attack")]
+    public float power;
+    float maxPower = 5;
+    bool buttonHeldDown;
+
+
     private void Update()
     {
-      
+        if(buttonHeldDown && power <= maxPower)
+        {
+            power += Time.deltaTime;
+        }
+        ChargeAttack();
+    }
+
+    public void HoldButton()
+    {
+        buttonHeldDown = true;
+    }
+    public void RealeseButton()
+    {
+        buttonHeldDown = false;
+        power = 0;
     }
 
     public void BasicAttack()
@@ -78,6 +97,12 @@ public class PlayerCombat : MonoBehaviour
 
             }
         }
+    }
+
+    public void ChargeAttack()
+    {
+        
+         
     }
 
 

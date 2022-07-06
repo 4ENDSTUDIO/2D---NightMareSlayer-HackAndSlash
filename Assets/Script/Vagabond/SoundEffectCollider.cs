@@ -24,13 +24,13 @@ public class SoundEffectCollider : MonoBehaviour
         {
             
             source.Play();
-            Debug.Log("Hayuu");
+            
 
         }
         else
         {
             source.Stop();
-            Debug.Log("Stop");
+           
         }
             
         

@@ -34,8 +34,8 @@ public class RUNandJUMP : MonoBehaviour
 
     [Header("Enviroment")]
     public Joystick Joystik;
-    float horizontalMove = 0f;
     private Animator anim;
+    
 
 
     [Header("Smoke")]
