@@ -19,7 +19,7 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Charge Attack")]
     public float power;
-    float maxPower = 5;
+    float maxPower = 3;
     bool buttonHeldDown;
 
 
@@ -28,18 +28,40 @@ public class PlayerCombat : MonoBehaviour
         if(buttonHeldDown && power <= maxPower)
         {
             power += Time.deltaTime;
+           
         }
+       
         ChargeAttack();
+    
+
+        
+      
     }
+   
 
     public void HoldButton()
     {
+        
+        
         buttonHeldDown = true;
     }
     public void RealeseButton()
     {
-        buttonHeldDown = false;
-        power = 0;
+        if(power > 2)
+        {
+            anim.SetTrigger("ChargeAttack");
+            power = 1;
+        }
+       
+        if (power < 2)
+        {
+            buttonHeldDown = false;
+            power = 1;
+
+        }
+
+        
+       
     }
 
     public void BasicAttack()
@@ -102,7 +124,7 @@ public class PlayerCombat : MonoBehaviour
     public void ChargeAttack()
     {
         
-         
+
     }
 
 
