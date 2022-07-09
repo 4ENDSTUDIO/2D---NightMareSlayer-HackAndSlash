@@ -24,26 +24,16 @@ public class PlayerCombat : MonoBehaviour
     float maxPower = 3;
     bool buttonHeldDown;
     public Image barChargeAttack;
+    float lerpSpeed;
 
 
     private void Update()
     {
-        if(buttonHeldDown && minPower <= maxPower)
-        {
-            minPower += Time.fixedDeltaTime;
-           
-        }
-        if(minPower > 1 && power <= maxPower)
-        {
-            power += Time.fixedDeltaTime;
-        }
        
-            barChargeAttack.gameObject.SetActive(true);
-            barChargeAttack.fillAmount = power / maxPower;
         
        
        
-        ChargeAttack();
+        ChargeAttackBar();
     
 
         
@@ -56,6 +46,7 @@ public class PlayerCombat : MonoBehaviour
         
         
         buttonHeldDown = true;
+        
     }
     public void RealeseButton()
     {
@@ -70,7 +61,8 @@ public class PlayerCombat : MonoBehaviour
             }
             power = 0;
         }
-       
+     
+
         if (power < 3)
         {
             buttonHeldDown = false;
@@ -79,7 +71,7 @@ public class PlayerCombat : MonoBehaviour
         }
         if (minPower > 3)
         {
-            anim.SetTrigger("ChargeAttack");
+           
             minPower = 0;
         }
 
@@ -87,6 +79,7 @@ public class PlayerCombat : MonoBehaviour
         {
             buttonHeldDown = false;
             minPower = 0;
+           
 
         }
 
@@ -151,9 +144,37 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void ChargeAttack()
+    public void ChargeAttackBar()
     {
-        
+        if (buttonHeldDown && minPower <= maxPower )
+        {
+            minPower += Time.fixedDeltaTime;
+            
+
+
+        }
+        if (minPower > 1 && power <= maxPower)
+        {
+
+            power += Time.fixedDeltaTime;
+            
+
+        }
+        if(power > 1.1)
+        {
+            anim.SetBool("ChargePower1", true);
+        }
+        else
+        {
+            anim.SetBool("ChargePower1", false);
+        }
+        lerpSpeed = 3f * Time.deltaTime;
+
+        barChargeAttack.gameObject.SetActive(true);
+        barChargeAttack.fillAmount = Mathf.Lerp(barChargeAttack.fillAmount, power / maxPower, lerpSpeed);
+
+        Color healthColor = Color.Lerp(Color.green, Color.red, (power / maxPower));
+        barChargeAttack.color = healthColor;
 
     }
 
