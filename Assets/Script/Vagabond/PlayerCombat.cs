@@ -26,18 +26,16 @@ public class PlayerCombat : MonoBehaviour
     public Image barChargeAttack;
     float lerpSpeed;
 
+    [Header("JumpAttack")]
+    public float force = 10f;
+    public RUNandJUMP yo;
+   
+
 
     private void Update()
     {
-       
         
-       
-       
         ChargeAttackBar();
-    
-
-        
-      
     }
    
 
@@ -50,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
     }
     public void RealeseButton()
     {
-        if(power > 3)
+        if(power > 2.5)
         {
             anim.SetTrigger("ChargeAttack");
 
@@ -101,6 +99,7 @@ public class PlayerCombat : MonoBehaviour
                 noOfClick++;
                 if (noOfClick == 1)
                 {
+
                     anim.SetTrigger("Attack1");
 
                     Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
@@ -144,6 +143,65 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    public void JumpAttack()
+    {
+        if(Time.time - lastClickedTime > maxComboDelay)
+        {
+            noOfClick = 0;
+        }
+        if (Time.time >= nextAttackTime)
+        {
+            if (rb.velocity.y != 0)
+            {
+                lastClickedTime = Time.time;
+                noOfClick++;
+                if (noOfClick == 1)
+                {
+                    anim.SetTrigger("JumpAttack1");
+
+                    rb.velocity = Vector2.up * force;
+                    Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                    foreach (Collider2D enemy in hitEnemy)
+                    {
+                        enemy.GetComponent<EnemyAttack>().TakeDamage(attackDamage);
+                    }
+                    nextAttackTime = Time.time + 1f / attackRate;
+                    noOfClick = Mathf.Clamp(noOfClick, 0, 3);
+
+                }
+                else if (noOfClick == 2)
+                {
+
+                    anim.SetTrigger("JumpAttack2");
+                    rb.velocity = Vector2.up * force;
+                    Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                    foreach (Collider2D enemy in hitEnemy)
+                    {
+                        enemy.GetComponent<EnemyAttack>().TakeDamage(attackDamage);
+                    }
+                    nextAttackTime = Time.time + 1f / attackRate;
+                    noOfClick = Mathf.Clamp(noOfClick, 0, 3);
+
+                }
+                else if (noOfClick == 3)
+                {
+                    anim.SetTrigger("JumpAttack3");
+                    rb.velocity = Vector2.down * force;
+                    Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                    foreach (Collider2D enemy in hitEnemy)
+                    {
+                        enemy.GetComponent<EnemyAttack>().TakeDamage(attackDamage);
+                        
+                    }
+                    nextAttackTime = Time.time + 1f / attackRate;
+                    noOfClick = Mathf.Clamp(noOfClick, 0, 3);
+                    noOfClick = 0;
+                }
+
+            }
+        }
+        }
+
     public void ChargeAttackBar()
     {
         if (buttonHeldDown && minPower <= maxPower )
@@ -168,7 +226,7 @@ public class PlayerCombat : MonoBehaviour
         {
             anim.SetBool("ChargePower1", false);
         }
-        lerpSpeed = 3f * Time.deltaTime;
+        lerpSpeed = 3.3f * Time.deltaTime;
 
         barChargeAttack.gameObject.SetActive(true);
         barChargeAttack.fillAmount = Mathf.Lerp(barChargeAttack.fillAmount, power / maxPower, lerpSpeed);

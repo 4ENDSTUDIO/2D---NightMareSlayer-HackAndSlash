@@ -5197,6 +5197,8 @@ MonoBehaviour:
   maxComboDelay: 0.7
   power: 0
   barChargeAttack: {fileID: 156698657}
+  force: 6.5
+  yo: {fileID: 170009739}
 --- !u!82 &170009741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8480,7 +8482,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 170009740}
-        m_MethodName: ChargeAttack
+        m_MethodName: JumpAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
